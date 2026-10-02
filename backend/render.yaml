@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: my-portfolio2-backend
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # set manually in the Render dashboard — never commit this
+      - key: JWT_SECRET
+        generateValue: true # Render generates a strong random value on first deploy
+      - key: JWT_EXPIRES_IN
+        value: 2h
+      - key: CORS_ORIGIN
+        sync: false # set to your Vercel URL(s), comma-separated, no trailing slash
+      - key: SEED_ADMIN_EMAIL
+        sync: false
+      - key: SEED_ADMIN_PASSWORD
+        sync: false
